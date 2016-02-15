@@ -1,2 +1,2 @@
 # node-alpine
-Docker-container for Node based on Alpine, striving for perfection
+Alpine-Linux-based, tiny Docker-container for Node, striving for perfection
