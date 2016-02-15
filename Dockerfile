@@ -1,20 +1,18 @@
 FROM alpine:3.3
 MAINTAINER Irakli Nadareishvili
 
-ENV NODE_VERSION=v0.12.7
-ENV RUNIT_INSTALLED=1
-# ENV NODE_VERSION=v4.2.1
+ENV NODE_VERSION=v4.3.0
 
-ENV REFRESHED_AT 2016-02-14-19_50EST
+ENV REFRESHED_AT 2016-02-08-15_50EST
 
 RUN apk upgrade --update \
  && apk add curl make gcc g++ linux-headers paxctl musl-dev \
-    libgcc libstdc++ python openssl-dev zlib-dev \
+    libgcc libstdc++ binutils-gold python openssl-dev zlib-dev \
  && mkdir -p /root/src \
  && cd /root/src \    
  && curl -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.gz | tar -xz \
  && cd /root/src/node-* \
- && ./configure --prefix=/usr \
+ && ./configure --prefix=/usr --without-snapshot \
  && make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
  && make install \
  && paxctl -cm /usr/bin/node \
@@ -25,3 +23,4 @@ RUN apk upgrade --update \
     /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man \
 		/usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
  && apk search --update
+
