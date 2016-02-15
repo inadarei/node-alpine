@@ -2,6 +2,7 @@ FROM alpine:3.3
 MAINTAINER Irakli Nadareishvili
 
 ENV NODE_VERSION=v4.3.0
+#ENV NODE_VERSION=v0.12.10
 
 ENV REFRESHED_AT 2016-02-08-15_50EST
 
@@ -21,7 +22,7 @@ RUN apk upgrade --update \
  && apk del make gcc g++ python linux-headers \
  && rm -rf /root/src /tmp/* /usr/share/man /var/cache/apk/* \
     /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man \
-		/usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
+    /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
  && apk search --update
 
 
