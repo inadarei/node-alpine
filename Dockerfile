@@ -1,8 +1,7 @@
 FROM alpine:3.3
 MAINTAINER Irakli Nadareishvili
 
-ENV NODE_VERSION=v4.3.2
-#ENV NODE_VERSION=v0.12.10
+ENV NODE_VERSION=v0.12.11
 
 ENV REFRESHED_AT 2016-03-03-21_30EST
 
@@ -27,9 +26,9 @@ RUN apk upgrade --update \
 
 ### RUNIT
 
-#RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-# && apk --update upgrade && apk add runit && rm -rf /var/cache/apk/* && apk --update search
-#ADD runit_init /sbin/
-#RUN chmod u+x /sbin/runit_init
+# RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+#  && apk --update upgrade && apk add runit && rm -rf /var/cache/apk/* && apk --update search
+# ADD runit_init /sbin/
+# RUN chmod u+x /sbin/runit_init
 #
-#CMD ["/sbin/runit_init"]
+# CMD ["/sbin/runit_init"]
