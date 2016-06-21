@@ -28,11 +28,12 @@ if [ $# -ne 1 ]; then
 fi
 
 
+node_version="$1"
 SEMVER_REGEX="^v[0-9]+\.[0-9]+\.[0-9]+$"
-version="$1"
-if [[ ! $version =~ $SEMVER_REGEX ]]; then
+if [[ ! $node_version =~ $SEMVER_REGEX ]]; then
   usage;
   exit 1;
 fi
 
-echo "releasing: $1";
+curr_date=`date +%Y-%m-%d_%H%M`
+echo "Releasing: Node $node_version Refresh: $curr_date ";
