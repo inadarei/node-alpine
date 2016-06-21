@@ -1,9 +1,9 @@
-ENV REFRESHED_AT 2016-06-20_2340
+ENV REFRESHED_AT {{DATE_TIME}}
 
 FROM alpine:3.4
 MAINTAINER Irakli Nadareishvili
 
-ENV NODE_VERSION=v5.10.0
+ENV NODE_VERSION={{NODE_VERSION}}
 
 RUN apk upgrade --update \
  && apk add curl make gcc g++ linux-headers paxctl musl-dev \
@@ -26,9 +26,9 @@ RUN apk upgrade --update \
 
 ### RUNIT
 
- RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-  && apk --update upgrade && apk add runit && rm -rf /var/cache/apk/* && apk --update search
- ADD runit_init /sbin/
- RUN chmod u+x /sbin/runit_init
+#!RUNIT RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+#!RUNIT  && apk --update upgrade && apk add runit && rm -rf /var/cache/apk/* && apk --update search
+#!RUNIT ADD runit_init /sbin/
+#!RUNIT RUN chmod u+x /sbin/runit_init
 
 CMD ["/sbin/runit_init"]

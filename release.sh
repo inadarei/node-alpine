@@ -72,4 +72,6 @@ git push origin --tags
 mv Dockerfile.untouched Dockerfile
 rm Dockerfile.bak
 
+git commit -m "cleanup after $node_full_number release " Dockerfile && git push
+
 echo "Done!"
