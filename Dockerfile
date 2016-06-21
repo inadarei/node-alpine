@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER Irakli Nadareishvili
 
 ENV NODE_VERSION=v4.3.2
