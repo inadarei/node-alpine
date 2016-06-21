@@ -29,13 +29,12 @@ fi
 
 
 node_version="$1"
-SEMVER_REGEX="^v([0-9]+)\.([0-9]+)\.([0-9])+$"
+SEMVER_REGEX="^v([0-9]+)\.([0-9]+)\.([0-9]+)$"
 if [[ ! $node_version =~ $SEMVER_REGEX ]]; then
   usage;
   exit 1;
 fi
 
-re='(.*)[0-9]+(.*)'
 if [[ $node_version =~ $SEMVER_REGEX ]]; then
   node_full_number="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.${BASH_REMATCH[3]}"
   node_major_number="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
