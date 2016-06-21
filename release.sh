@@ -44,6 +44,7 @@ fi
 curr_date=`date +%Y-%m-%d_%H%M`
 echo "Releasing: Node $node_version ($node_full_number/$node_major_number). Refresh: $curr_date ";
 
+cp Dockerfile Dockerfile.untouched
 sed -i.bak "s/{{NODE_VERSION}}/$node_version/" Dockerfile
 sed -i.bak "s/{{DATE_TIME}}/$curr_date/" Dockerfile
 
@@ -67,6 +68,7 @@ git push origin :refs/tags/$node_major_number && git tag -a node_major_number -m
 git push origin --tags
 
 # Cleanup
-mv Dockerfile.bak Dockerfile
+mv Dockerfile.untouched Dockerfile
+rm Dockerfile.bak
 
 echo "Done!"
