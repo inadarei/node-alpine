@@ -52,7 +52,8 @@ sed -i.bak "s/{{DATE_TIME}}/$curr_date/" Dockerfile
 
 git commit -m "$node_full_number" Dockerfile
 git tag -a $node_full_number -m "$node_full_number"
-git tag -d "$node_major_number" && git push origin :refs/tags/$node_major_number && git tag -a node_major_number -m "node_major_number"
+git tag -d "$node_major_number" # This may fail if such major ver doesn't yet exist. That's OK
+git push origin :refs/tags/$node_major_number && git tag -a $node_major_number -m "$node_major_number"
 git push origin --tags
 
 # Node with runit
@@ -64,7 +65,7 @@ sed -i.bak "s/#!RUNIT//g" Dockerfile
 git commit -m "$node_full_number" Dockerfile
 git tag -a $node_full_number -m "$node_full_number"
 git tag -d "$node_major_number" # This may fail if such major ver doesn't yet exist. That's OK
-git push origin :refs/tags/$node_major_number && git tag -a node_major_number -m "node_major_number"
+git push origin :refs/tags/$node_major_number && git tag -a $node_major_number -m "$node_major_number"
 git push origin --tags
 
 # Cleanup
