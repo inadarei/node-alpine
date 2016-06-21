@@ -47,13 +47,12 @@ cp Dockerfile Dockerfile.untouched
 sed -i.bak "s/{{NODE_VERSION}}/$node_version/" Dockerfile
 sed -i.bak "s/{{DATE_TIME}}/$curr_date/" Dockerfile
 
-# Just node
+# Execute twice: for just node and node with runit
 
-git commit -m "$node_full_number" Dockerfile
-git tag -a $node_full_number -m "$node_full_number"
-git tag -d "$node_major_number" # This may fail if such major ver doesn't yet exist. That's OK
-git push origin :refs/tags/$node_major_number && git tag -a $node_major_number -m "$node_major_number"
-git push origin --tags
+COUNTER=0
+while [  $COUNTER -lt 2 ]; do
+
+if [[ $COUNTER -eq 1 ]]; then
 
 # Node with runit
 sed -i.bak "s/#!RUNIT//g" Dockerfile
@@ -61,11 +60,19 @@ sed -i.bak "s/#!RUNIT//g" Dockerfile
  node_full_number="$node_full_number$runit_suffix"
  node_major_number="$node_major_number$runit_suffix"
 
+fi
+
 git commit -m "$node_full_number" Dockerfile
-git tag -a $node_full_number -m "$node_full_number"
+git tag -d "$node_full_number" # This may fail if tag doesn't yet exist. That's OK
+git push origin :refs/tags/$node_full_number && git tag -a $node_full_number -m "$node_full_number"
 git tag -d "$node_major_number" # This may fail if such major ver doesn't yet exist. That's OK
 git push origin :refs/tags/$node_major_number && git tag -a $node_major_number -m "$node_major_number"
 git push origin --tags
+
+   let COUNTER=COUNTER+1
+done
+
+# --- END WHILE LOOP
 
 # Cleanup
 mv Dockerfile.untouched Dockerfile
