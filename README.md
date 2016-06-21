@@ -20,6 +20,7 @@ FROM irakli/node-alpine:6.2-runit
 ```
 
 To see all supported versions: <https://hub.docker.com/r/irakli/node-alpine/tags/>
+
 For more advanced example of usage, see: https://github.com/inadarei/nodebootstrap/blob/master/Dockerfile
 
 
