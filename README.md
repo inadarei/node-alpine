@@ -11,6 +11,18 @@ Compare 56MB of this container with typical 500MB to 800MB sizes you get with Ub
 
 In most production deployments we would like a process monitor to restart our node service if it ever shuts down. On Alpine Linux such lightweight process monitor is: [runit](http://smarden.org/runit/), which you can install by using one of the *-runit tagged builds.
 
+## Using
+
+Insert at the top of your Dockerfile:
+
+```
+FROM irakli/node-alpine:6.2-runit
+```
+
+To see all supported versions: <https://hub.docker.com/r/irakli/node-alpine/tags/>
+For more advanced example of usage, see: https://github.com/inadarei/nodebootstrap/blob/master/Dockerfile
+
+
 ## Adding More Packages (if needed)
 
 If you need more packages installed (e.g. make, gcc for compiling some native Node modules, or imagemagick etc.) base your new container on this one and you can use `apk` package manager that Alpine provides. For instance:
