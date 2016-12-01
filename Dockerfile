@@ -26,7 +26,7 @@ RUN apk upgrade --update \
 
 ### RUNIT
 
-#!RUNIT RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+#!RUNIT RUN echo "`http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
 #!RUNIT  && apk --update upgrade && apk add runit && rm -rf /var/cache/apk/* && apk --update search
 #!RUNIT ADD runit_init /sbin/
 #!RUNIT RUN chmod u+x /sbin/runit_init
