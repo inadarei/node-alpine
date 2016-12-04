@@ -5,7 +5,7 @@
 
 Alpine-Linux-based, tiny Docker-container for Node, striving for perfection
 
-Compare 56MB of this container with typical 500MB to 800MB sizes you get with Ubuntu- or CentOS-based images.
+Compare [25MB](https://hub.docker.com/r/irakli/node-alpine/tags/) of this container with typical 500MB to 800MB sizes you get with Ubuntu- or CentOS-based images.
 
 ### Runit Support
 
