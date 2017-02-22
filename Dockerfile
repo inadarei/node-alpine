@@ -1,9 +1,9 @@
 FROM alpine:3.4
 MAINTAINER Irakli Nadareishvili
 
-ENV REFRESHED_AT {{DATE_TIME}}
+ENV REFRESHED_AT 2017-02-22_0850
 
-ENV NODE_VERSION={{NODE_VERSION}}
+ENV NODE_VERSION=v6.10.0
 
 RUN apk upgrade --update \
  && apk add curl make gcc g++ linux-headers paxctl musl-dev \
