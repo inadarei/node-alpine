@@ -23,6 +23,22 @@ RUN apk upgrade --update \
     /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
  && apk search --update
 
+RUN apk add --update \
+    python \
+    python-dev \
+    py-pip \
+    bash \
+    wget \
+    ca-certificates \
+    build-base \
+ && pip install --upgrade pip \
+ && pip install virtualenv \
+ && adduser -s /bin/false -D appuser \
+ && rm -rf node_modules \ 
+ && npm install \ 
+ && chown -R appuser /opt/app \
+ && npm install -g nodemon
+ 
 
 ### RUNIT
 
