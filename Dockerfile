@@ -16,14 +16,7 @@ RUN apk upgrade --update \
  && make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
  && make install \
  && paxctl -cm /usr/bin/node \
- && npm cache clean \
- && apk del make gcc g++ python linux-headers \
- && rm -rf /root/src /tmp/* /usr/share/man /var/cache/apk/* \
-    /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man \
-    /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
- && apk search --update
-
-RUN apk add --update \
+ && apk add --update \
     python \
     python-dev \
     py-pip \
@@ -37,8 +30,12 @@ RUN apk add --update \
  && rm -rf node_modules \ 
  && npm install \ 
  && chown -R appuser /opt/app \
- && npm install -g nodemon
- 
+ && npm install -g nodemon \
+ && npm cache clean \
+ && rm -rf /root/src /tmp/* /usr/share/man /var/cache/apk/* \
+    /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man \
+    /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
+ && apk search --update
 
 ### RUNIT
 
